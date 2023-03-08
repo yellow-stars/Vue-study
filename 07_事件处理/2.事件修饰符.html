@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"> </script>
+    <style>
+        * {
+            margin-top: 20px;
+        }
+
+        .demo1 {
+            height: 50px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        1.
+     -->
+    <div id="root" type="text/javascript">
+        <!-- 1.prevent阻止默认事件（常用） -->
+        <a href="http://www.atguigu.com" @click.prevent="showInfo">点我提示信息</a>
+        <!-- stop阻止时间冒泡（常用） -->
+        <div class="demo1" @click="showInfo">
+            <button @click.stop="showInfo">点我提示信息2 </button>
+        </div>
+        <!-- 时间只触发一次 -->
+        <button @click.once="showInfo">点我提示信息2 </button>
+    </div>
+</body>
+<script>
+    new Vue({
+
+
+        el: '#root',
+        data: {
+
+        },
+        methods: {
+            showInfo(e) {
+                // e.preventDefault()
+                alert('同学你好！')
+            }
+        }
+    })
+</script>
+
+</html>
