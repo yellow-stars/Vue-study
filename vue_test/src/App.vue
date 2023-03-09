@@ -1,77 +1,31 @@
 <template>
   <div>
-    <div id="root">
-      <div class="todo-container">
-        <div class="todo-wrap">
-          <my-header :addTodo="addTodo" />
-          <my-list :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
-          <my-footer :todos="todos" :checkAllTodo="checkAllTodo" :clearAllTodo="clearAllTodo"/>
-        </div>
-      </div>
-    </div>
+    <MyStudent v-on:atguigu="getStudentName"/>
+    <hr />
+    <MySchool />
   </div>
 </template>
 
 <script>
-
 //引入MySchool组件
-import MyHeader from "./components/MyHeader.vue";
-import MyList from "./components/MyList.vue";
-import MyFooter from "./components/MyFooter.vue";
-
+import MyStudent from "./components/MyStudent.vue";
+import MySchool from './components/MySchool.vue'
 export default {
   name: "App",
   components: {
-    MyHeader,
-    MyFooter,
-    MyList,
+    MyStudent,
+    MySchool
   },
-
   data() {
     return {
-      //这里直接JSON.parse(localStorage.getItem('todos'))返回null会报错在data里用||判断一下
-      todos: JSON.parse(localStorage.getItem('todos')) || [],
+      msg: "欢迎学习Vue！",
     };
   },
-  methods: {
-    //添加一个todo
-    addTodo(todoObj) {
-      this.todos.unshift(todoObj);
-    },
-    //取消or勾选一个todo
-    checkTodo(id) {
-      this.todos.forEach((todo) => {
-        if (todo.id === id) todo.done = !todo.done;
-      });
-    },
-    //删除tudo
-    deleteTodo(id) {
-      this.todos = this.todos.filter((todo) => {
-        return todo.id !== id;
-      });
-    },
-    //全选or取消
-    checkAllTodo(boollean){
-       this.todos.forEach((todo)=>{
-            todo.done = boollean
-       })
-    },
-    //清除所有已完成的todo
-    clearAllTodo(){
-      this.todos= this.todos.filter((todo)=>{
-        return !todo.done
-      })
+  methods:{
+    getStudentName(name){
+      console.log('demo被调用了',name)
     }
-  },
-  watch:{
-    todos:{
-      deep:true,
-      handler(value){
-        localStorage.setItem('todos',JSON.stringify(value))
-      }
-    }
-    
-  },
+  }
 };
 </script>
 
