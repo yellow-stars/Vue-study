@@ -2,7 +2,7 @@
   <div class="student">
     <h2>学生姓名：{{ name }}</h2>
     <h2>学生性别：{{ sex }}</h2>
-    <button @click="sendStudentName">把学生名给App</button>
+    <button @click="sendStudentName">把学生名给School组件</button>
   </div>
 </template>
 
@@ -18,10 +18,10 @@ export default {
     };
   },
   methods:{
-    sendStudentName(){
-      //触发Student身上的自定义事件
-      this.$emit('atguigu',this.name)
-    }
+   sendStudentName(){
+    this.$bus.$emit('hello',this.name)
+   }
+
   }
 
 };

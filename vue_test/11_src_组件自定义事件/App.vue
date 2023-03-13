@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MyStudent />
+    <MyStudent v-on:atguigu="getStudentName" @demo="m1"/>
     <hr />
     <MySchool />
   </div>
@@ -22,7 +22,12 @@ export default {
     };
   },
   methods:{
-    
+    getStudentName(name){
+      console.log('demo被调用了',name)
+    },
+    m1(){
+      console.log('demo事件被触发了')
+    }
   }
 };
 </script>

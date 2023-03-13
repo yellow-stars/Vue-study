@@ -10,8 +10,5 @@ import App from './App.vue'
 //创建vm
 new Vue({
     el:'#app',
-    render: h=> h(App),
-    beforeCreate(){
-        Vue.prototype.$bus = this   //安装事件总线
-    }
+    render: h=> h(App)
 })
