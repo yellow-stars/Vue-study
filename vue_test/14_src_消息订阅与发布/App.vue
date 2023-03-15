@@ -1,28 +1,29 @@
 <template>
   <div>
-    <MyTest/>
+    <MyStudent />
+    <hr />
+    <MySchool />
   </div>
 </template>
 
 <script>
-import MyTest from './components/MyTest'
-
-
+//引入MySchool组件
+import MyStudent from "./components/MyStudent.vue";
+import MySchool from './components/MySchool.vue'
 export default {
   name: "App",
   components: {
-   MyTest
+    MyStudent,
+    MySchool
   },
-
   data() {
     return {
-     
+      msg: "欢迎学习Vue！",
     };
   },
- 
-
-
-
+  methods:{
+    
+  }
 };
 </script>
 
@@ -51,12 +52,6 @@ body {
   background-color: #da4f49;
   border: 1px solid #bd362f;
 }
-.btn-edit {
-  color: #fff;
-  background-color: #38e5e5;
-  border: 1px solid #30c0c0;
-}
-
 
 .btn-danger:hover {
   color: #fff;
