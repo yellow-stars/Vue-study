@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="isShow=!isShow">显示/隐藏</button>
-    <transition>
+    <transition name="hello" appear>
       <h1 v-show="isShow" >你好啊!</h1>
     </transition>
   </div>
@@ -23,10 +23,10 @@ h1{
     background-color: aqua;
 }
 
-.v-enter-active{
+.hello-enter-active{
   animation: atguigu 1s;
 }
-.v-leave-active{
+.hello-leave-active{
   animation: atguigu 1s reverse;
 }
 

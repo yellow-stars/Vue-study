@@ -181,3 +181,36 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
       
       4.提供数据：pubsub.publish('xxx',数据)
       5.最好在beforeDestroy钩子中，用PubSub.unsubscribe(pid)去取消订阅。
+
+###  Vue脚手架配置代理
+方法一
+   在vue.config.js中添加如下配置：
+     devServe:{
+      proxy:"http://localhost:5000"
+     }
+  说明：
+     1.优点：配置简单，请求资源时直接发给前端（8080）即可
+     2.缺点：不能配置多个代理，不能灵活的控制请求是否走代理
+     3.工作方式：若按照上述配置代理，请求了前端不存在的资源时，那么该请求会转发给服务器（优先匹配前端资源）
+
+方法二
+   编写vue.config.js配置具体代理规则：
+   moudule.exports={
+    devServer:{
+    proxy:{
+      '/api':{//匹配所有 以'/api'开头的请求
+        target:'http://localhost:5000',//代理目标的基础路径
+        pathRewrite:{'^/api':''},
+        // ws:true,用于支持websocket
+        // changeOrigin:true,//默认为true
+      },
+      '/demo':{
+        target:'http://localhost:5001',
+        pathRewrite:{'^/demo':''},
+        // ws:true,用于支持websocket
+        // changeOrigin:true,//默认为true
+      },
+    }
+    
+  }
+   }
