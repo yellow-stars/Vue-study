@@ -4,20 +4,15 @@
    <!-- <ul>
     <li v-for="(item,index) in listData" :key="index">{{ item }}</li> 
    </ul> -->
-   <slot :games="games" >我是一些默认值，当使用者没有传递具体结构时，我会出现1</slot>
-  
+   <slot name="center">我是一些默认值，当使用者没有传递具体结构时，我会出现1</slot>
+   <slot name="footer">我是一些默认值，当使用者没有传递具体结构时，我会出现2</slot>
   </div>
 </template>
 
 <script>
 export default {
     name:'MyCategory',
-    props:['title'],
-    data() {
-    return {
-      games: ["红色警戒", "穿越火线", "劲舞团", "超级玛丽"], 
-    };
-  },
+    props:['title']
 }
 </script>
 
