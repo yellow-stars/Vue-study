@@ -1,13 +1,5 @@
-//该文件用于创建Vuex中最为核心的store
-
-import Vue from 'vue'
-//引入Vuex
-import Vuex from 'vuex'
-//应用Vuex插件
-Vue.use(Vuex)
-
 //求和相关配置
-const countOptions = {
+export default  {
     namespaced:true,
     actions: {
         jia(context, value) {
@@ -49,31 +41,3 @@ const countOptions = {
         }
     }
 }
-
-//人员管理相关配置
-const personOptions = {
-    namespaced:true,
-    actions: {},
-    mutations: {
-        ADD_PERSON(state, value) {
-            console.log('mutation被调用了')
-            state.personList.unshift(value)
-        }
-    },
-    state: {
-        personList: [
-            { id: '001', name: '张三' }
-        ]
-    },
-    getters: {}
-}
-
-
-//创建store
-export default new Vuex.Store({
-    modules:{
-        countAbout:countOptions,
-        personAbout:personOptions
-    }
-})
-

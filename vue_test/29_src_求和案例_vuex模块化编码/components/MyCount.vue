@@ -11,13 +11,13 @@
   </select>
   <button @click="increment(n)">+</button>
   <button @click="decrement(n)">-</button>
-  <button @click="incrementOdd">当前求和为奇数再加</button>
-  <button @click="incrementWait">等一等再加</button>
+  <button @click="incrementOdd(n)">当前求和为奇数再加</button>
+  <button @click="incrementWait(n)">等一等再加</button>
   </div>
 </template>
 
 <script>
-import {mapState,mapMutations,mapActions} from 'vuex'
+import {mapState,mapMutations,mapActions,mapGetters} from 'vuex'
 export default {
     name:'MyCount',
     props:[''],
@@ -33,21 +33,23 @@ export default {
     // decrement(){
     //   this.$store.dispatch('jian',this.n)
     // },
-    incrementOdd(){
-      this.$store.dispatch('jiaOdd',this.n)
-    },
-    incrementWait(){
-      this.$store.dispatch('jiaWait',this.n)
-    },
+    // incrementOdd(){
+    //   this.$store.dispatch('jiaOdd',this.n)
+    // },
+    // incrementWait(){
+    //   this.$store.dispatch('jiaWait',this.n)
+    //借助mapMutations生成对应方法，方法中会调用commit去联系mutation（对象写法）
     ...mapMutations('countAbout',{increment:'JIA',decrement:'JIAN'}),
+    //借助mapActions生成对应方法，方法中会调用dispatch去联系actions（对象写法）
     ...mapActions('countAbout',{incrementOdd:'jiaOdd',incrementWait:'jiaWait'}),
   },
   computed:{
     // ...mapState(['countAbout' ,'personAbout'])
-   
+      //借助mapState生成计算属性，从State中读取数据（数组写法）
     ...mapState('countAbout',['sum','school','subject']),
-    ...mapState('personAbout',['personList',])
-    
+    ...mapState('personAbout',['personList',]),
+    //借助MapGetter生成计算属性，从getters中读取数据。(数组写法)
+    ...mapGetters('countAbout',['bigSum'])
   },
   mounted(){
     //console.log(this.$store)
